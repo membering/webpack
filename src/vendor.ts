@@ -11,6 +11,7 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 import '../bower_components/bootstrap/less/bootstrap.less';
 import '../bower_components/font-awesome/less/font-awesome.less';
+import '../bower_components/SpinKit/scss/spinners/3-wave.scss';
 
 import '../bower_components/bootstrap';
 import '../bower_components/remarkable-bootstrap-notify';

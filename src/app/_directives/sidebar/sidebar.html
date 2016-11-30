@@ -9,7 +9,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="{{profile.avatar}}" alt="..." class="img-circle profile_img">
+                <img src="{{profile.avatar}}" alt="..." class="img-circle profile_img" style="margin-top: 20px;">
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
@@ -26,20 +26,19 @@
                 <h3>...</h3>
                 <ul class="nav side-menu">
                     <li><a [routerLink]="['/dashboard']"><i class="fa fa-home"></i> Dashboard </a></li>
-                    <li><a><i class="fa fa-credit-card"></i> Cards <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-credit-card"></i> Thẻ <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a [routerLink]="['/card/generate']">Generate</a></li>
-                            <li><a [routerLink]="['/card/list']">List</a></li>
-                            <li><a [routerLink]="['/card/list/published']">Published</a></li>
-                            <li><a [routerLink]="['/card/list/received']">Received</a></li>
+                            <li><a [routerLink]="['/card/generate']">Tạo mới</a></li>
+                            <li><a [routerLink]="['/card/list']">Danh sách</a></li>
+                            <li><a [routerLink]="['/card/list/published']">Đã phát hành</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-book"></i> Contacts <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-book"></i> Danh bạ <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a [routerLink]="['/contact/create']">Create</a></li>
-                            <li><a [routerLink]="['/contact/list']">List</a></li>
+                            <li><a [routerLink]="['/contact/list']">Danh sách</a></li>
                         </ul>
                     </li>
+                    <li><a [routerLink]="['/card/list/received']"><i class="fa fa-credit-card"></i> Nhận thẻ </a></li>
                 </ul>
             </div>
         </div>

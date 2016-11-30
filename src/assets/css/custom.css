@@ -138,7 +138,7 @@
     margin-left: 15%;
     z-index: 1000;
     position: inherit;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     border: 1px solid rgba(52, 73, 94, 0.44);
     padding: 4px;
 }
@@ -3030,8 +3030,6 @@ ul.project_files li a i {
     border-radius: 3px;
 }
 .card_small {
-    max-width: 49% !important;
-    width: 150px;
     height: 100px;
 }
 

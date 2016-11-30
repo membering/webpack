@@ -13,8 +13,6 @@ export class ProfileComponent implements OnInit {
     title: string;
     params: any = [];
     loading = false;
-    model: any = {};
-    model_address = {};
     data: any = [];
     categories: any = [];
     cities: any = [];
