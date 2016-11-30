@@ -1,0 +1,16 @@
+{
+  "name": "angular2-webpack",
+  "version": "1.0.0",
+  "description": "A webpack starter for Angular",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "remarkable-bootstrap-notify": "^3.1.3"
+  }
+}

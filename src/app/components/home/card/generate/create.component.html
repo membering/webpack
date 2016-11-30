@@ -1,0 +1,49 @@
+<div class="x_title">
+    <h2>{{title}}</h2>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <div class="row">
+        <div class="col-md-6 col-xs-12" style="padding: 10px"><img src="{{image.front}}" style="max-width: 100%;border: solid 1px;border-radius: 3px;"></div>
+        <div class="col-md-6 col-xs-12" style="padding: 10px"><img src="{{image.back}}" style="max-width: 100%;border: solid 1px;border-radius: 3px;"></div>
+    </div>
+    <div class="clear"></div>
+    <hr>
+    <form (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-md-6 col-xs-12" *ngFor="let fields of data">
+            <h4 class="title">{{fields.group_name}}</h4>
+            <div *ngFor="let field of fields.group_fields">
+                <div class="form-group" *ngIf="field.field_type != 'file'">
+                    <label>{{field.field_name}}</label>
+                    <input *ngIf="field.field_type == 'text'" type="{{field.field_type}}" class="form-control"
+                           name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
+                           placeholder="{{field.field_name}}" />
+                    <select *ngIf="field.field_type == 'select'" class="form-control"
+                            name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value">
+                        <option *ngFor="let i of field.field_data" [value]="i.code">{{i.label}}</option>
+                    </select>
+                    <textarea *ngIf="field.field_type == 'textarea'" class="form-control"
+                              name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
+                              placeholder="{{field.field_name}}"></textarea>
+                    <input *ngIf="field.field_type == 'datetime'" type="datetime-local" class="form-control"
+                           name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
+                           placeholder="{{field.field_name}}" />
+                    <input *ngIf="field.field_type == 'decimal'" type="number" class="form-control"
+                           name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
+                           placeholder="{{field.field_name}}" />
+                    <input *ngIf="field.field_type == 'integer'" type="number" class="form-control"
+                           name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
+                           placeholder="{{field.field_name}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <button type="submit" class="btn btn-default" [disabled]="loading">Submit</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </div>
+    </form>
+</div>

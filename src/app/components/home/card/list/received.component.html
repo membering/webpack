@@ -1,0 +1,31 @@
+<div class="x_title">
+    <h2>{{title}}</h2>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <pagination-controls (pageChange)="loadList($event)"></pagination-controls>
+    <div class="row">
+        <div class="col-md-6" style="padding: 20px" *ngFor="let card of cards | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }" id="{{card.instance_id}}">
+            <div class="col-md-4 col-xs-12 text-center" style="padding: 10px">
+                <img src="{{card.acc_avatar}}" class="img-circle profile_img large">
+            </div>
+            <div class="col-md-8 col-xs-12" style="padding: 10px">
+                <p><strong>{{card.acc_name}}</strong></p>
+                <p>{{card.cs_time_send_card | amTimeAgo}}</p>
+                <ul style="list-style-type: none;padding: 0;">
+                    <li style="display: inline;"><img src="{{card.image_front}}" class="card_small"></li>
+                    <li style="display: inline;"><img src="{{card.image_back}}" class="card_small"></li>
+                </ul>
+                <ul style="list-style-type: none;padding: 0;">
+                    <li style="display: inline;">
+                        <button type="submit" class="btn btn-default" (click)="accept(card.instance_id)">Nhận</button>
+                    </li>
+                    <li style="display: inline;">
+                        <button type="submit" class="btn btn-default" (click)="cancel(card.instance_id)">Từ chối</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="loadList($event)"></pagination-controls>
+</div>

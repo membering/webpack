@@ -1,0 +1,44 @@
+<div class="x_title">
+    <h2>{{title}}</h2>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <div class="row">
+        <div class="col-md-2">
+            <select class="form-control" (change)="selectType($event.target.value)">
+                <option>-- Card Type --</option>
+                <option *ngFor="let type of types" [value]="type.code">{{type.label}}</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <pagination-controls (pageChange)="loadList($event, this.card_type)"></pagination-controls>
+    <div class="row" style="border-bottom: solid 1px" *ngFor="let card of cards | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
+        <div class="col-md-4 col-xs-12" style="padding: 10px">
+            <a [routerLink]="['/card/detail', card.id]">
+                <img src="{{card.image_front}}" class="card">
+            </a>
+        </div>
+        <div class="col-md-4 col-xs-12" style="padding: 10px">
+            <a [routerLink]="['/card/detail', card.id]">
+                <img src="{{card.image_back}}" class="card">
+            </a>
+        </div>
+        <div class="col-md-4 col-xs-12" style="padding: 10px">
+            <p><a [routerLink]="['/card/detail', card.id]"><strong>{{card.name}}</strong></a></p>
+            <p>{{card.valid_start | amDateFormat:'MM/DD/YYYY'}} - {{card.valid_end | amDateFormat:'MM/DD/YYYY'}}</p>
+            <ul style="list-style-type: none;padding: 0;">
+                <li style="display: inline;" *ngIf="card.status < 3">
+                    <a class="btn btn-default" [routerLink]="['/card/edit', card.id]">Edit</a>
+                </li>
+                <li style="display: inline;" *ngIf="card.status < 3 && card.card_type == 2">
+                    <a class="btn btn-default" [routerLink]="['/card/publish', card.id]">Publish</a>
+                </li>
+                <li style="display: inline;">
+                    <a class="btn btn-default" [routerLink]="['/card/send', card.id]">Send</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="loadList($event, this.card_type)"></pagination-controls>
+</div>

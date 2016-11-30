@@ -1,0 +1,56 @@
+<div class="x_title">
+    <h2>{{title}}</h2>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <h4 class="title">Mặt trước</h4>
+            <div class="form-group" *ngFor="let ele of template_elements">
+                <div *ngIf="ele.front_back == 0">
+                    <label>{{ele.element_attr.name}}</label>
+                    <input *ngIf="ele.element_type == 'file'" class="form-control" type="{{ele.element_type}}"
+                           (change)="fileChange($event, ele)"
+                           name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}" />
+                    <input *ngIf="ele.element_type == 'text'" class="form-control" type="{{ele.element_type}}"
+                           (keyup)="textChange($event, ele)" value="{{ele.element_attr.text}}"
+                           name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}" />
+                    <textarea *ngIf="ele.element_type == 'textarea'" class="form-control"
+                              (keyup)="textChange($event, ele)" value="{{ele.element_attr.text}}"
+                              name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}"></textarea>
+                </div>
+            </div>
+            <div class="form-group" style="background: #66615b;" [style.width.px]="template.width + 2" [style.height.px]="template.height + 2">
+                <canvas #canvasF style="background: #fff;margin: 1px 0 0 1px"
+                        width="{{template.width}}" height="{{template.height}}"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h4 class="title">Mặt sau</h4>
+            <div class="form-group" *ngFor="let ele of template_elements">
+                <div *ngIf="ele.front_back == 1">
+                    <label>{{ele.element_attr.name}}</label>
+                    <input *ngIf="ele.element_type == 'file'" class="form-control" type="{{ele.element_type}}"
+                           (change)="fileChange($event, ele)"
+                           name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}" />
+                    <input *ngIf="ele.element_type == 'text'" class="form-control" type="{{ele.element_type}}"
+                           (keyup)="textChange($event, ele)" value="{{ele.element_attr.text}}"
+                           name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}" />
+                    <textarea *ngIf="ele.element_type == 'textarea'" class="form-control"
+                              (keyup)="textChange($event, ele)" value="{{ele.element_attr.text}}"
+                              name="{{ele.element_attr.id}}" id="{{ele.element_attr.id}}"></textarea>
+                </div>
+            </div>
+            <div class="form-group" style="background: #66615b;" [style.width.px]="template.width + 2" [style.height.px]="template.height + 2">
+                <canvas #canvasB style="background: #fff;margin: 1px 0 0 1px"
+                        width="{{template.width}}" height="{{template.height}}"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <button [routerLink]="['/card/generate/create', template.card_type]" class="btn btn-default">Generate</button>
+            <a [routerLink]="['/card/generate']">Cancel</a>
+        </div>
+    </div>
+</div>

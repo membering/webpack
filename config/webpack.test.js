@@ -24,13 +24,15 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: helpers.root('src', 'app'),
-                loader: 'null'
+                loader: 'to-string-loader!raw'
             },
             {
-                test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'raw'
+                test: /\.less$/,
+                loader: 'to-string-loader!raw'
+            },
+            {
+                test: /\.(sass|scss)$/,
+                loader: 'to-string-loader!raw'
             }
         ]
     }

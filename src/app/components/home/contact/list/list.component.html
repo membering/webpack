@@ -1,0 +1,22 @@
+<div class="x_title">
+    <h2>{{title}}</h2>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <pagination-controls (pageChange)="loadList($event)"></pagination-controls>
+    <div class="row">
+        <div class="col-md-6 col-xs-12" style="padding: 20px" *ngFor="let contact of data | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
+            <div class="col-md-4 col-xs-12 text-center" style="padding: 10px">
+                <a [routerLink]="['/contact/detail', contact.id]">
+                    <img src="{{contact.photo}}" class="img-circle profile_img large">
+                </a>
+            </div>
+            <div class="col-md-8 col-xs-12" style="padding: 10px">
+                <p><a [routerLink]="['/contact/detail', contact.id]"><strong>{{contact.name}}</strong></a></p>
+                <p>{{contact.email}}</p>
+                <p>{{contact.phone}}</p>
+            </div>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="loadList($event)"></pagination-controls>
+</div>

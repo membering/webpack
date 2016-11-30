@@ -14,7 +14,10 @@ module.exports = {
 
     resolve: {
         extensions: ['', '.ts', '.js', '.json'],
-        modules: [helpers.root('src'), helpers.root('node_modules')],
+        modules: [helpers.root('src'), helpers.root('node_modules'), helpers.root('bower_components')],
+        alias: {
+            'jquery': helpers.root('bower_components/jquery/src/jquery')
+        }
     },
 
     module: {
@@ -28,18 +31,20 @@ module.exports = {
                 loader: 'html'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
+                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)([\?]?.*)$/,
+                loader: 'file?name=[name].[hash].[ext]'
             },
             {
                 test: /\.css$/,
-                exclude: helpers.root('src', 'app'),
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+                loader: 'to-string-loader!style-loader!css-loader'
             },
             {
-                test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'raw'
+                test: /\.less$/,
+                loader: 'to-string-loader!style-loader!css-loader!less-loader'
+            },
+            {
+                test: /\.(sass|scss)$/,
+                loader: 'to-string-loader!style-loader!css-loader!sass-loader'
             }
         ]
     },
@@ -55,6 +60,11 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: 'src/index.html'
+        }),
+
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery'
         })
     ]
 };

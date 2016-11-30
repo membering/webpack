@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html'
+  selector: 'app',
+  styleUrls: ['../assets/css/custom.css'],
+  template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {
-    constructor() {
-        console.log(process.env.ENV);
-        console.log(process.env.apiUrl);
-    }
-}
+export class AppComponent {}
