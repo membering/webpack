@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Response, RequestOptionsArgs } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
+declare var $: any;
 
 @Injectable()
 export class HttpClient {
@@ -14,22 +15,42 @@ export class HttpClient {
     }
 
     get(url, options?: RequestOptionsArgs) {
-        return this.http.get(this.apiUrl + url, options).map((response: Response) => response.json());
+        $('.loader').addClass('is-active');
+        return this.http.get(this.apiUrl + url, options).map((response: Response) => {
+            $('.loader').removeClass('is-active');
+            return response.json();
+        });
     }
 
     post(url, data?: any, options?: RequestOptionsArgs) {
-        return this.http.post(this.apiUrl + url, data, options).map((response: Response) => response.json());
+        $('.loader').addClass('is-active');
+        return this.http.post(this.apiUrl + url, data, options).map((response: Response) => {
+            $('.loader').removeClass('is-active');
+            return response.json();
+        });
     }
 
     put(url, data?: any, options?: RequestOptionsArgs) {
-        return this.http.put(this.apiUrl + url, data, options).map((response: Response) => response.json());
+        $('.loader').addClass('is-active');
+        return this.http.put(this.apiUrl + url, data, options).map((response: Response) => {
+            $('.loader').removeClass('is-active');
+            return response.json();
+        });
     }
 
     delete(url, options?: RequestOptionsArgs) {
-        return this.http.delete(this.apiUrl + url, options).map((response: Response) => response.json());
+        $('.loader').addClass('is-active');
+        return this.http.delete(this.apiUrl + url, options).map((response: Response) => {
+            $('.loader').removeClass('is-active');
+            return response.json();
+        });
     }
 
     patch(url, data?: any, options?: RequestOptionsArgs) {
-        return this.http.patch(this.apiUrl + url, data, options).map((response: Response) => response.json());
+        $('.loader').addClass('is-active');
+        return this.http.patch(this.apiUrl + url, data, options).map((response: Response) => {
+            $('.loader').removeClass('is-active');
+            return response.json();
+        });
     }
 }
