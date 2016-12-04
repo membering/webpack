@@ -12,6 +12,7 @@ import 'rxjs';
 import '../bower_components/bootstrap/less/bootstrap.less';
 import '../bower_components/font-awesome/less/font-awesome.less';
 import '../bower_components/SpinKit/scss/spinners/3-wave.scss';
+import '../src/assets/css/custom.css';
 
 import '../bower_components/bootstrap';
 import '../bower_components/remarkable-bootstrap-notify';

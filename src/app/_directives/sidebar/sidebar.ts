@@ -1,13 +1,12 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
-declare var $: any;
 
 @Component({
 	selector: 'sidebar-cmp',
 	templateUrl: 'sidebar.html'
 })
 
-export class SidebarDirective implements AfterViewInit {
+export class SidebarDirective {
 	jwtHelper: JwtHelper = new JwtHelper();
 	profile: any = {};
 
@@ -16,9 +15,5 @@ export class SidebarDirective implements AfterViewInit {
 		if (this.profile.avatar != null && this.profile.avatar.indexOf('http') < 0) {
 			this.profile.avatar = 'http://static2.fastcard.vn/account/' + this.profile.avatar;
 		}
-	}
-
-	ngAfterViewInit() {
-		$.getScript('../../../assets/js/custom.js');
 	}
 }

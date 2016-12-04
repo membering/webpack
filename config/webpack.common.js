@@ -31,20 +31,24 @@ module.exports = {
                 loader: 'html'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)([\?]?.*)$/,
-                loader: 'file?name=[name].[hash].[ext]'
+                test: /\.(png|jpe?g|gif|ico)([\?]?.*)$/,
+                loader: 'file?name=assets/images/[name].[ext]'
+            },
+            {
+                test: /\.(svg|woff|woff2|ttf|eot)([\?]?.*)$/,
+                loader: 'file?name=assets/fonts/[name].[ext]'
             },
             {
                 test: /\.css$/,
-                loader: 'to-string-loader!style-loader!css-loader'
+                loader: ExtractTextPlugin.extract(['css?sourceMap'])
             },
             {
                 test: /\.less$/,
-                loader: 'to-string-loader!style-loader!css-loader!less-loader'
+                loader: ExtractTextPlugin.extract(['css','less'])
             },
             {
                 test: /\.(sass|scss)$/,
-                loader: 'to-string-loader!style-loader!css-loader!sass-loader'
+                loader: ExtractTextPlugin.extract(['css','sass'])
             }
         ]
     },
@@ -55,7 +59,9 @@ module.exports = {
         }),
 
         new CopyWebpackPlugin([
-            { from: 'src/assets', to: 'assets' }
+            { from: 'src/assets/js', to: 'assets/js' },
+            { from: 'src/assets/images', to: 'assets/images' },
+            { from: 'src/assets/icon', to: 'assets/icon' }
         ]),
 
         new HtmlWebpackPlugin({
