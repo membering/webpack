@@ -13,8 +13,8 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.ts', '.js', '.json'],
-        modules: [helpers.root('src'), helpers.root('node_modules'), helpers.root('bower_components')],
+        extensions: ['', '.ts', '.js'],
+        modules: [helpers.root('src'), helpers.root('node_modules')],
         alias: {
             'jquery': helpers.root('bower_components/jquery/src/jquery')
         }

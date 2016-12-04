@@ -1,9 +1,11 @@
 // Angular
+import '@angular/common';
+import '@angular/compiler';
+import '@angular/core';
+import '@angular/forms';
+import '@angular/http';
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
-import '@angular/core';
-import '@angular/common';
-import '@angular/http';
 import '@angular/router';
 // RxJS
 import 'rxjs';
@@ -12,7 +14,7 @@ import 'rxjs';
 import '../bower_components/bootstrap/less/bootstrap.less';
 import '../bower_components/font-awesome/less/font-awesome.less';
 import '../bower_components/SpinKit/scss/spinners/3-wave.scss';
-import '../src/assets/css/custom.css';
+import './assets/css/custom.css';
 
 import '../bower_components/bootstrap';
 import '../bower_components/remarkable-bootstrap-notify';
