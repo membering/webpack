@@ -19,12 +19,9 @@
     src: url('../fonts/UTM_Centur.ttf');
 }
 .spinner {
-    position: fixed !important;
-    top: 50%;
-    left: 52%;
-    margin-top: -10px;
-    margin-left: -55px;
-    text-align: center;
+    position: fixed;
+    top: calc(50% - 23px);
+    left: calc(50% - 60px);
 }
 .spinner > div {
     width: 18px;
