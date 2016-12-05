@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-declare var $: any;
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app',
   template: `<router-outlet></router-outlet>`
 })
-export class AppComponent implements OnInit {
-  ngOnInit() {
-    $.getScript('../../../assets/js/custom.js');
-  }
-}
+export class AppComponent {}

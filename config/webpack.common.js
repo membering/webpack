@@ -14,9 +14,9 @@ module.exports = {
 
     resolve: {
         extensions: ['', '.ts', '.js'],
-        modules: [helpers.root('src'), helpers.root('node_modules')],
+        // modules: [helpers.root('src'), helpers.root('node_modules')],
         alias: {
-            'jquery': helpers.root('bower_components/jquery/src/jquery')
+            'jquery': helpers.root('node_modules/jquery/src/jquery')
         }
     },
 
@@ -24,6 +24,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.ts$/,
+                exclude: [/\.(spec|e2e)\.ts$/],
                 loaders: ['awesome-typescript-loader', 'angular2-template-loader']
             },
             {

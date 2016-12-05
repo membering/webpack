@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
 	templateUrl: 'home.component.html'
 })
 
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+	ngOnInit() {
+		$.getScript('../../../assets/js/custom.js');
+	}
+}

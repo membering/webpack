@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A webpack starter for Angular",
   "license": "MIT",
+  "authors": [
+    "Thien Nguyen <thien.nguyen@seldatinc.com>"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
