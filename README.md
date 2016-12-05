@@ -4,8 +4,8 @@
  - angular2-moment
  - ng2-pagination
  - bootstrap
+ - bootstrap-notify
  - font-awesome
- - remarkable-bootstrap-notify
  - SpinKit
 
 ## Run

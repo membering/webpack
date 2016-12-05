@@ -12,6 +12,7 @@
     "types": [
       "core-js",
       "jasmine",
+      "jquery",
       "node"
     ]
   },

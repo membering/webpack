@@ -7,14 +7,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        'polyfills': './src/polyfills.ts',
-        'vendor': './src/vendor.ts',
-        'app': './src/main.ts'
+        'polyfills': helpers.root('src/polyfills.ts'),
+        'vendor': helpers.root('src/vendor.ts'),
+        'app': helpers.root('src/main.ts')
     },
 
     resolve: {
         extensions: ['', '.ts', '.js'],
-        // modules: [helpers.root('src'), helpers.root('node_modules')],
+        modules: [helpers.root('src'), helpers.root('node_modules')],
         alias: {
             'jquery': helpers.root('node_modules/jquery/src/jquery')
         }
@@ -60,13 +60,13 @@ module.exports = {
         }),
 
         new CopyWebpackPlugin([
-            { from: 'src/assets/js', to: 'assets/js' },
-            { from: 'src/assets/images', to: 'assets/images' },
-            { from: 'src/assets/icon', to: 'assets/icon' }
+            { from: helpers.root('src/assets/js'), to: 'assets/js' },
+            { from: helpers.root('src/assets/images'), to: 'assets/images' },
+            { from: helpers.root('src/assets/icon'), to: 'assets/icon' }
         ]),
 
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: helpers.root('src/index.html')
         }),
 
         new webpack.ProvidePlugin({
