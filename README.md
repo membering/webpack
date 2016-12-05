@@ -7,6 +7,7 @@
  - font-awesome
  - remarkable-bootstrap-notify
  - SpinKit
+
 ## Run
 
 Make sure that system has been installed NodeJS. If not, install [NodeJS](https://nodejs.org/en/)
