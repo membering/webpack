@@ -7,7 +7,7 @@
     "Thien Nguyen <thien.nguyen@seldatinc.com>"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.dev.js --inline --progress",
+    "start": "webpack-dev-server --inline --progress",
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
@@ -55,7 +55,6 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "to-string-loader": "^1.1.5",
     "typescript": "^2.1.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
