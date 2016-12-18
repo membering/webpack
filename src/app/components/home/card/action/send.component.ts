@@ -27,12 +27,7 @@ export class SendComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadDetail();
         this.loadContact();
-    }
-
-    loadDetail() {
-        return this.cardService.getDetail(this.params['id']).subscribe(response => this.data = response.data);
     }
 
     loadContact() {
@@ -68,9 +63,5 @@ export class SendComponent implements OnInit {
                 this.model.email = this.listContact[v.value].email;
                 this.model.phone = this.listContact[v.value].phone;
             });
-        // console.log(options);
-        // this.contact.map((v, i) => {
-        //
-        // })
     }
 }

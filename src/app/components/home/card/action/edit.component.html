@@ -14,8 +14,14 @@
             <div class="col-md-6 col-xs-12" *ngFor="let fields of data">
                 <h4 class="title">{{fields.group_name}}</h4>
                 <div *ngFor="let field of fields.group_fields">
-                    <div class="form-group" *ngIf="field.field_type != 'file' && field.field_type != 'group'" [ngClass]="{ 'has-error': form.touched && form.controls[field.field_id].errors }">
+                    <div class="form-group" *ngIf="field.field_id != 'hinh_mat_truoc' && field.field_id != 'hinh_mat_sau' && field.field_type != 'group'" [ngClass]="{ 'has-error': form.touched && form.controls[field.field_id].errors }">
                         <label>{{field.field_name}}</label>
+                        <label *ngIf="field.field_type == 'file'" for="{{field.field_id}}">
+                            <img [src]="form.controls[field.field_id].value" style="cursor:pointer;max-width:100%;height:auto;"/>
+                            <input type="{{field.field_type}}" (change)="fileChange($event)"
+                                   class="form-control" id="{{field.field_id}}"
+                                   style="visibility:hidden" />
+                        </label>
                         <input *ngIf="field.field_type == 'text'" type="{{field.field_type}}" class="form-control"
                                formControlName="{{field.field_id}}"
                                placeholder="{{field.field_name}}" />

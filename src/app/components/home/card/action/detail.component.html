@@ -14,8 +14,11 @@
         <div class="col-md-6 col-xs-12" *ngFor="let fields of data">
             <h4 class="title">{{fields.group_name}}</h4>
             <div *ngFor="let field of fields.group_fields">
-                <div class="form-group" *ngIf="field.field_type != 'file'">
+                <div class="form-group" *ngIf="field.field_id != 'hinh_mat_truoc' && field.field_id != 'hinh_mat_sau' && field.field_type != 'group'">
                     <label>{{field.field_name}}</label>
+                    <label *ngIf="field.field_type == 'file'">
+                        <img [src]="field.value" style="cursor:pointer;max-width:100%;height:auto;"/>
+                    </label>
                     <input *ngIf="field.field_type == 'text'" type="{{field.field_type}}" class="form-control"
                            name="{{field.field_id}}" [(ngModel)]="model[field.field_id] = field.value"
                            placeholder="{{field.field_name}}" disabled />

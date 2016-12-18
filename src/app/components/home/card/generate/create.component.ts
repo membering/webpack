@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CardService, AlertService } from '../../../../services/index';
 import { Util } from '../../../../_libraries/index';
 
@@ -8,9 +9,11 @@ import { Util } from '../../../../_libraries/index';
 })
 
 export class CreateComponent implements OnInit {
+    form: FormGroup;
     title: string;
     params: any = [];
     loading = false;
+    submitted = false;
     model: any = {};
     image: any = [];
     data: any = [];
@@ -24,44 +27,67 @@ export class CreateComponent implements OnInit {
     ) {
         this.title = route.snapshot.data['name'];
         route.params.subscribe(params => this.params = params);
+        this.form = new FormGroup({});
     }
 
     ngOnInit() {
         this.image.front = localStorage.getItem('image_front');
         this.image.back = localStorage.getItem('image_back');
         this.loadFields();
+        console.log(this.form);
     }
 
     loadFields() {
-        return this.cardService.getCreateFields(this.params['type']).subscribe(response => this.data = response.data.data);
+        return this.cardService.getCreateFields(this.params['type']).subscribe(response => {
+            this.data = response.data.data;
+            response.data.data.forEach((value) => {
+                value.group_fields.forEach((v) => {
+                    if (v.field_type != 'group') {
+                        this.form.registerControl(v.field_id, new FormControl('', Validators.required));
+                    }
+                });
+            });
+        });
     }
 
     onSubmit() {
-        this.loading = true;
-        this.model['card_type'] = parseInt(this.params['type']);
-        this.model['hinh_mat_truoc'] = this.image.front;
-        this.model['hinh_mat_sau'] = this.image.back;
-        let formData = new FormData();
-        for (let key in this.model) {
-            if (key == 'hinh_mat_truoc' || key == 'hinh_mat_sau') {
-                formData.append(key, this.util.dataURItoBlob(this.model[key]));
+        this.submitted = true;
+        this.form.patchValue({
+            'hinh_mat_truoc': this.image.front,
+            'hinh_mat_sau': this.image.back
+        });
+        if (this.form.valid) {
+            this.loading = true;
+            let formData = new FormData();
+            for (let key in this.form.value) {
+                if (key == 'hinh_mat_truoc' || key == 'hinh_mat_sau' || key == 'hinh_person') {
+                    formData.append(key, this.util.dataURItoBlob(this.form.value[key]));
+                }
+                else formData.append(key, this.form.value[key]);
             }
-            else formData.append(key, this.model[key]);
-        }
-        this.cardService.createCard(formData)
-            .subscribe(
-                response => {
-                    if (response.code === 200) {
-                        this.router.navigate(['/card/list']);
-                    }
-                    else {
-                        this.alertService.error(response.message);
+            this.cardService.createCard(formData)
+                .subscribe(
+                    response => {
+                        if (response.code === 200) {
+                            this.router.navigate(['/card/list']);
+                        }
+                        else {
+                            this.alertService.error(response.message);
+                            this.loading = false;
+                        }
+                    },
+                    error => {
+                        this.alertService.error(error);
                         this.loading = false;
-                    }
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+                    });
+        }
+    }
+
+    fileChange(event) {
+        var reader = new FileReader();
+        reader.onload = () => {
+            this.form.setControl(event.target.id, new FormControl(reader.result, Validators.required));
+        };
+        reader.readAsDataURL(event.target.files[0]);
     }
 }

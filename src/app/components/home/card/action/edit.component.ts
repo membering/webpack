@@ -13,6 +13,7 @@ export class EditComponent implements OnInit {
     title: string;
     params: any = [];
     loading = false;
+    change = false;
     image: any = [];
     data: any = [];
 
@@ -20,7 +21,8 @@ export class EditComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private cardService: CardService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private util: Util
     ) {
         this.title = route.snapshot.data['name'];
         route.params.subscribe(params => this.params = params);
@@ -41,7 +43,7 @@ export class EditComponent implements OnInit {
                     if (v.field_type == 'datetime') {
                         v.value = v.value.substr(0, 19);
                     }
-                    if (v.field_type != 'file' && v.field_type != 'group') {
+                    if (v.field_id != 'hinh_mat_truoc' && v.field_id != 'hinh_mat_sau' && v.field_type != 'group') {
                         this.form.registerControl(v.field_id, new FormControl(v.value, Validators.required));
                     }
                 });
@@ -55,7 +57,8 @@ export class EditComponent implements OnInit {
         this.loading = true;
         let formData = new FormData();
         for (let key in this.form.value) {
-            formData.append(key, this.form.value[key]);
+            if (key == 'hinh_person' && this.change) formData.append(key, this.util.dataURItoBlob(this.form.value[key]));
+            else formData.append(key, this.form.value[key]);
         }
         this.cardService.editCard(formData)
             .subscribe(
@@ -72,5 +75,14 @@ export class EditComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+    }
+
+    fileChange(event) {
+        var reader = new FileReader();
+        reader.onload = () => {
+            this.form.setControl(event.target.id, new FormControl(reader.result, Validators.required));
+            this.change = true;
+        };
+        reader.readAsDataURL(event.target.files[0]);
     }
 }

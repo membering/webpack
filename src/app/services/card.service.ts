@@ -26,7 +26,7 @@ export class CardService {
     }
 
     getDetail(id) {
-        return this.http.post('/supplier/card/detail', {card_id: id});
+        return this.http.post('/supplier/card/view_edit', {id_card: id});
     }
 
     getTypes() {
