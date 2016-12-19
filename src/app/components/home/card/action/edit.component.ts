@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CardService, AlertService } from '../../../../services/index';
 import { Util } from '../../../../_libraries/index';
+declare var $: any;
 
 @Component({
     templateUrl: 'edit.component.html'
@@ -31,6 +32,7 @@ export class EditComponent implements OnInit {
 
     ngOnInit() {
         this.loadFields();
+        $("input[type='datetime-local']").datetimepicker();
     }
 
     loadFields() {
