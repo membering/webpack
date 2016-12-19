@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
 
     ngOnInit() {
         this.loadFields();
-        $("input[type='datetime-local']").datetimepicker();
+        $('input[type=datetime]').datetimepicker();
     }
 
     loadFields() {
