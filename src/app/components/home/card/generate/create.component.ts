@@ -40,8 +40,8 @@ export class CreateComponent implements OnInit {
     loadFields() {
         return this.cardService.getCreateFields(this.params['type']).subscribe(response => {
             this.data = response.data.data;
-            response.data.data.forEach((value) => {
-                value.group_fields.forEach((v) => {
+            response.data.data.forEach((value: any) => {
+                value.group_fields.forEach((v: any) => {
                     if (v.field_type != 'group') {
                         this.form.registerControl(v.field_id, new FormControl('', Validators.required));
                     }
@@ -83,7 +83,7 @@ export class CreateComponent implements OnInit {
         }
     }
 
-    fileChange(event) {
+    fileChange(event: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.form.setControl(event.target.id, new FormControl(reader.result, Validators.required));

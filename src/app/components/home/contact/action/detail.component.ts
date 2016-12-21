@@ -38,7 +38,7 @@ export class DetailComponent implements OnInit {
         });
     }
 
-    fileChange(event) {
+    fileChange(event: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.data.photo = reader.result;

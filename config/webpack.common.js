@@ -14,7 +14,7 @@ module.exports = {
 
     resolve: {
         extensions: ['', '.ts', '.js'],
-        modules: [helpers.root('src'), helpers.root('node_modules')],
+        modules: [helpers.root('src'), helpers.root('node_modules'), helpers.root('bower_components')],
         alias: {
             'jquery': helpers.root('node_modules/jquery/src/jquery')
         }
@@ -49,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.(sass|scss)$/,
-                loader: ExtractTextPlugin.extract(['css','sass'])
+                loader: ExtractTextPlugin.extract(['css','sass?includePaths[]='+helpers.root('node_modules/compass-mixins/lib')])
             }
         ]
     },

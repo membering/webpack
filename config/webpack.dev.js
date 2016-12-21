@@ -1,13 +1,15 @@
-const commonConfig = require('./webpack.common.js');
+var commonConfig = require('./webpack.common.js');
 
-const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
-const helpers = require('./helpers');
+var webpack = require('webpack');
+var webpackMerge = require('webpack-merge');
+var helpers = require('./helpers');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
+var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+
+var HOST = process.env.HOST || 'localhost';
+var PORT = process.env.PORT || 8080;
 
 module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-module-eval-source-map',
@@ -23,6 +25,7 @@ module.exports = webpackMerge(commonConfig, {
         new ExtractTextPlugin('[name].css'),
         new webpack.DefinePlugin({
             'process.env': {
+                'ENV': JSON.stringify(ENV),
                 'apiUrl': JSON.stringify('http://api.fastcard.vn')
             }
         })

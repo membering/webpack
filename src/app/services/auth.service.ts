@@ -12,7 +12,7 @@ export class AuthService {
         this.apiUrl = process.env.apiUrl;
     }
 
-    login(email, pwd) {
+    login(email: any, pwd: any) {
         return this.http.post(this.apiUrl + '/auth/login', {email: email, pwd: pwd}).map((response: Response) => response.json());
     }
 

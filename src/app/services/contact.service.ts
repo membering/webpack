@@ -5,15 +5,15 @@ import { HttpClient } from '../_libraries/http.client';
 export class ContactService {
     constructor(private http: HttpClient) { }
 
-    getList(page) {
+    getList(page: any) {
         return this.http.post('/supplier/contact/list', {page: page, no_cache: 1});
     }
 
-    getDetail(id) {
+    getDetail(id: any) {
         return this.http.post('/supplier/contact/view', {id: id});
     }
 
-    editContact(params) {
+    editContact(params: any) {
         return this.http.post('/supplier/contact/save', params);
     }
 

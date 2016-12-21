@@ -9,23 +9,23 @@ export class CardService {
         return this.http.post('/supplier/profile');
     }
 
-    editProfile(params) {
+    editProfile(params: any) {
         return this.http.post('/supplier/profile/save', params);
     }
 
-    getList(page, type = null) {
+    getList(page: any, type: any = null) {
         return this.http.post('/supplier/card/list', {page: page, card_type: type, no_cache: 1});
     }
 
-    getListPublished(page) {
+    getListPublished(page: any) {
         return this.http.post('/supplier/publish/list', {page: page, no_cache: 1});
     }
 
-    getListReceived(page) {
+    getListReceived(page: any) {
         return this.http.post('/supplier/card/received_list', {page: page, no_cache: 1});
     }
 
-    getDetail(id) {
+    getDetail(id: any) {
         return this.http.post('/supplier/card/view_edit', {id_card: id});
     }
 
@@ -33,43 +33,43 @@ export class CardService {
         return this.http.post('/app/card_types');
     }
 
-    getListTemplates(type) {
+    getListTemplates(type: any) {
         return this.http.post('/template/list', {card_type: type});
     }
 
-    getTemplate(id) {
+    getTemplate(id: any) {
         return this.http.post('/template/view', {id: id});
     }
 
-    getCreateFields(type) {
+    getCreateFields(type: any) {
         return this.http.post('/app/fields_create_card', {card_type: type});
     }
 
-    getEditFields(id) {
+    getEditFields(id: any) {
         return this.http.post('/supplier/card/view_edit', {id_card: id});
     }
 
-    createCard(params) {
+    createCard(params: any) {
         return this.http.post('/supplier/card/create', params);
     }
 
-    editCard(params) {
+    editCard(params: any) {
         return this.http.post('/supplier/card/save_edit', params);
     }
 
-    publishCard(params) {
+    publishCard(params: any) {
         return this.http.post('/supplier/card/publish_external', params);
     }
 
-    sendCard(params) {
+    sendCard(params: any) {
         return this.http.post('/supplier/card/send', params);
     }
 
-    acceptCard(id) {
+    acceptCard(id: any) {
         return this.http.post('/supplier/card/receive', {instance_id: id});
     }
 
-    cancelCard(id) {
+    cancelCard(id: any) {
         return this.http.post('/supplier/card/receive', {instance_id: id});
     }
 

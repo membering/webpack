@@ -79,7 +79,7 @@ export class EditComponent implements OnInit {
                 });
     }
 
-    fileChange(event) {
+    fileChange(event: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.form.setControl(event.target.id, new FormControl(reader.result, Validators.required));

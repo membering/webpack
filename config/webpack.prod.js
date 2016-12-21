@@ -6,6 +6,8 @@ const helpers = require('./helpers');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var ENV = process.env.ENV = process.env.NODE_ENV = 'production';
+
 module.exports = webpackMerge(commonConfig, {
     devtool: 'source-map',
 
@@ -27,6 +29,7 @@ module.exports = webpackMerge(commonConfig, {
         new ExtractTextPlugin('[name].[hash].css'),
         new webpack.DefinePlugin({
             'process.env': {
+                'ENV': JSON.stringify(ENV),
                 'apiUrl': JSON.stringify('http://api.fastcard.vn')
             }
         })

@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
         this.model.photo = '/assets/images/default_avatar.png';
     }
 
-    fileChange(event) {
+    fileChange(event: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.model.photo = reader.result;

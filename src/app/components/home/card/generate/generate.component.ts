@@ -26,7 +26,7 @@ export class GenerateComponent implements OnInit {
         return this.cardService.getTypes().subscribe(response => this.types = response.data.data);
     }
 
-    selectType(value) {
+    selectType(value: any) {
         return this.cardService.getListTemplates(value).subscribe(response => this.data = response.data);
     }
 }

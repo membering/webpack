@@ -55,11 +55,10 @@ export class SendComponent implements OnInit {
                 });
     }
 
-    selectContact(options) {
+    selectContact(options: any) {
         this.contact = Array.apply(null, options)  // convert to real Array
-            .filter(option => option.selected)
-            .map((v, i) => {
-                console.log(v.value);
+            .filter((option: any) => option.selected)
+            .map((v: any, i: any) => {
                 this.model.email = this.listContact[v.value].email;
                 this.model.phone = this.listContact[v.value].phone;
             });

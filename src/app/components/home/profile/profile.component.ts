@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
         this.loadDistricts();
     }
 
-    fileChange(event) {
+    fileChange(event: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.data.supp_avatar = reader.result;
@@ -90,13 +90,12 @@ export class ProfileComponent implements OnInit {
                 bio: this.data.supp_bio,
                 field: this.data.supp_field
             });
-            let control = <FormArray>this.form.controls['address'];
-            this.data.address.forEach((value, index) => {
-                control.setControl(index,
+            this.data.address.forEach((v: any, i: any) => {
+                (<FormArray>this.form.controls['address']).setControl(i,
                     this._fb.group({
-                        address: value.address,
-                        city_id: value.city_id,
-                        district_id: value.district_id,
+                        address: v.address,
+                        city_id: v.city_id,
+                        district_id: v.district_id,
                     })
                 );
             });
@@ -129,13 +128,13 @@ export class ProfileComponent implements OnInit {
         }
         this.cardService.editProfile(formData)
             .subscribe(
-                response => {
-                    if (response.code === 200) {
-                        this.alertService.success(response.message);
+                res => {
+                    if (res.code === 200) {
+                        this.alertService.success(res.message);
                         this.loading = false;
                     }
                     else {
-                        this.alertService.error(response.message);
+                        this.alertService.error(res.message);
                         this.loading = false;
                     }
                 },

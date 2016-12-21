@@ -8,8 +8,8 @@ import { CardService } from '../../../../services/index';
 
 export class TemplateComponent implements OnInit {
     title: string;
-    @ViewChild('canvasF') canvasRefF;
-    @ViewChild('canvasB') canvasRefB;
+    @ViewChild('canvasF') canvasRefF: any;
+    @ViewChild('canvasB') canvasRefB: any;
     template: any = [];
     template_elements: any = [];
     params: any = [];
@@ -19,9 +19,9 @@ export class TemplateComponent implements OnInit {
     image: any = [];
     files: any = [];
     firstLoad: any = [];
-    canvasF = null;
-    canvasB = null;
-    context = null;
+    canvasF: any;
+    canvasB: any;
+    context: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -52,7 +52,7 @@ export class TemplateComponent implements OnInit {
         });
     }
 
-    textChange(event, ele) {
+    textChange(event: any, ele: any) {
         this.objCVS.element.forEach((value: any) => {
             if (value.id == ele.id) {
                 value.element_attr.text = event.target.value;
@@ -70,7 +70,7 @@ export class TemplateComponent implements OnInit {
         this.render(canvas, this.objCVS, this.image[ele.front_back], target);
     }
 
-    fileChange(event, ele) {
+    fileChange(event: any, ele: any) {
         var reader = new FileReader();
         reader.onload = () => {
             this.image[ele.front_back] = reader.result;
@@ -88,7 +88,7 @@ export class TemplateComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    render(canvas, objCVS, src, target) {
+    render(canvas: any, objCVS: any, src: any, target: any) {
         let context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = objCVS.fill_style;
@@ -136,7 +136,7 @@ export class TemplateComponent implements OnInit {
         };
     }
 
-    doWrapText(context, text, x, y, maxWidth, lineHeight) {
+    doWrapText(context: any, text: any, x: any, y: any, maxWidth: any, lineHeight: any) {
         var words = text.split(' ');
         var line = '';
         for(var n = 0; n < words.length; n++) {

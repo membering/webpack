@@ -39,7 +39,7 @@ export class ListComponent implements OnInit {
         return this.cardService.getTypes().subscribe(response => this.types = response.data.data);
     }
 
-    selectType(value) {
+    selectType(value: any) {
         this.card_type = value;
         return this.cardService.getList(this.p, this.card_type).subscribe(response => {
             this.total = response.total;

@@ -14,7 +14,7 @@ export class HttpClient {
         this.apiUrl = process.env.apiUrl;
     }
 
-    get(url, options?: RequestOptionsArgs) {
+    get(url: string, options?: RequestOptionsArgs) {
         $('.loader').addClass('is-active');
         return this.http.get(this.apiUrl + url, options).map((response: Response) => {
             $('.loader').removeClass('is-active');
@@ -22,7 +22,7 @@ export class HttpClient {
         });
     }
 
-    post(url, data?: any, options?: RequestOptionsArgs) {
+    post(url: string, data?: any, options?: RequestOptionsArgs) {
         $('.loader').addClass('is-active');
         return this.http.post(this.apiUrl + url, data, options).map((response: Response) => {
             $('.loader').removeClass('is-active');
@@ -30,7 +30,7 @@ export class HttpClient {
         });
     }
 
-    put(url, data?: any, options?: RequestOptionsArgs) {
+    put(url: string, data?: any, options?: RequestOptionsArgs) {
         $('.loader').addClass('is-active');
         return this.http.put(this.apiUrl + url, data, options).map((response: Response) => {
             $('.loader').removeClass('is-active');
@@ -38,7 +38,7 @@ export class HttpClient {
         });
     }
 
-    delete(url, options?: RequestOptionsArgs) {
+    delete(url: string, options?: RequestOptionsArgs) {
         $('.loader').addClass('is-active');
         return this.http.delete(this.apiUrl + url, options).map((response: Response) => {
             $('.loader').removeClass('is-active');
@@ -46,7 +46,7 @@ export class HttpClient {
         });
     }
 
-    patch(url, data?: any, options?: RequestOptionsArgs) {
+    patch(url: string, data?: any, options?: RequestOptionsArgs) {
         $('.loader').addClass('is-active');
         return this.http.patch(this.apiUrl + url, data, options).map((response: Response) => {
             $('.loader').removeClass('is-active');

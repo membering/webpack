@@ -36,7 +36,7 @@ export class ReceivedComponent implements OnInit {
         });
     }
 
-    accept(id) {
+    accept(id: any) {
         this.cardService.acceptCard(id)
             .subscribe(
                 response => {
@@ -53,7 +53,7 @@ export class ReceivedComponent implements OnInit {
                 });
     }
 
-    cancel(id) {
+    cancel(id: any) {
         this.cardService.cancelCard(id)
             .subscribe(
                 response => {
