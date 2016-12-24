@@ -84,4 +84,8 @@ export class CardService {
     getDistricts() {
         return this.http.post('/app/districts');
     }
+
+    stopPublish(id: any) {
+        return this.http.post('/supplier/card/on_off_publish', {id_card: id, status_publish: 0});
+    }
 }

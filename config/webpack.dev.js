@@ -9,7 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
 var HOST = process.env.HOST || 'localhost';
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-module-eval-source-map',
@@ -26,7 +26,7 @@ module.exports = webpackMerge(commonConfig, {
         new webpack.DefinePlugin({
             'process.env': {
                 'ENV': JSON.stringify(ENV),
-                'apiUrl': JSON.stringify('http://api.fastcard.vn')
+                'apiUrl': JSON.stringify('http://localhost:8080')
             }
         })
     ],

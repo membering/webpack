@@ -32,6 +32,9 @@
                 <li style="display: inline;">
                     <a class="btn btn-default" [routerLink]="['/card/send', card.id]">Send</a>
                 </li>
+                <li style="display: inline;">
+                    <a class="btn btn-default" (click)="stopPublish(card.id)">Stop Publish</a>
+                </li>
             </ul>
         </div>
     </div>

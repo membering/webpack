@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardService } from '../../../../services/index';
+import { AlertService, CardService } from '../../../../services/index';
 
 @Component({
     templateUrl: 'list.component.html'
@@ -17,7 +17,8 @@ export class ListComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private cardService: CardService
+        private cardService: CardService,
+        private alertService: AlertService
     ) {
         this.title = route.snapshot.data['name'];
     }
@@ -46,5 +47,22 @@ export class ListComponent implements OnInit {
             this.p = response.page_num;
             this.cards = response.data
         });
+    }
+
+    stopPublish(id: any) {
+        return this.cardService.stopPublish(id)
+            .subscribe(
+                res => {
+                    if (res.code === 200) {
+                        this.alertService.success(res.message);
+                    }
+                    else {
+                        this.alertService.error(res.message);
+                    }
+                },
+                error => {
+                    this.alertService.error(error);
+                }
+            );
     }
 }
