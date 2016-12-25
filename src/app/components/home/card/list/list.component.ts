@@ -55,6 +55,7 @@ export class ListComponent implements OnInit {
                 res => {
                     if (res.code === 200) {
                         this.alertService.success(res.message);
+                        this.loadList(this.p, this.card_type);
                     }
                     else {
                         this.alertService.error(res.message);
