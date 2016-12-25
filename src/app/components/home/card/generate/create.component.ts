@@ -59,6 +59,8 @@ export class CreateComponent implements OnInit {
         if (this.form.valid) {
             this.loading = true;
             let formData = new FormData();
+            formData.append('card_type', this.params['type']);
+
             for (let key in this.form.value) {
                 if (key == 'hinh_mat_truoc' || key == 'hinh_mat_sau' || key == 'hinh_person') {
                     formData.append(key, this.util.dataURItoBlob(this.form.value[key]));
